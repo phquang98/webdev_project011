@@ -1,12 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux"; // connect our global state store to the entire app
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import "./index.css";
+import App from "./App";
+import allReducer from "./reducers"; // this take file index.js auto by Webpack
+// import allReducer from "./reducers/index"; // same as above, but we use Webpack -> it auto sees any files named index.js -> dont need the /index part in the link
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// Create a store with args so that Redux devtool can recognise
+// notices we use combined reducer as args when create the store
+const myStore = createStore(
+  allReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+// Wrap app inside Provider compo -> everywhere in App get access to Redux store
+ReactDOM.render(
+  <Provider store={myStore}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
