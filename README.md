@@ -1,7 +1,10 @@
 # Webdev Project 011
 
+Written date: 18/02/2020
+
 This repo contains code to practice Redux.\
-In the future, should also learn what is Redux-thunk and Redux-saga.
+In the future, should also learn what is Redux-thunk and Redux-saga.\
+At the time of writing, run app OK. Remember to run Redux Dev Tools for debugging.
 
 Data flow:
 
